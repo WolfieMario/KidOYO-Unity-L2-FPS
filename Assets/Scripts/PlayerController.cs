@@ -59,7 +59,6 @@ public class PlayerController : MonoBehaviour
                                             minimumXRotation, maximumXRotation);
         cameraEulerRotation.y = 0f;
         cameraEulerRotation.z = 0f;
-        Debug.Log(cameraEulerRotation);
         cameraRotation.eulerAngles = cameraEulerRotation;
         camera.transform.localRotation = cameraRotation;
     }
