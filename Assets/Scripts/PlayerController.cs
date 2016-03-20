@@ -23,6 +23,10 @@ public class PlayerController : MonoBehaviour
 
         movementVector += Physics.gravity;
 
+        float isJumping = Input.GetAxis("Jump");
+        if (isJumping > 0f)
+            movementVector.y = jumpSpeed;
+
         characterController.Move(movementVector * Time.deltaTime);
 	}
 
