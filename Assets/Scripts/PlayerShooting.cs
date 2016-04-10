@@ -3,6 +3,7 @@ using System.Collections;
 
 public class PlayerShooting : MonoBehaviour
 {
+    public float gunDamage = 35f;
 
     new Camera camera;
 
@@ -15,14 +16,15 @@ public class PlayerShooting : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        if (Input.GetAxis("Fire1") > 0) {
+        if (Input.GetMouseButtonUp(0)) {
             RaycastHit hitInfo = new RaycastHit();
             bool hit = Physics.Raycast(camera.transform.position, camera.transform.forward, out hitInfo);
-            GameObject enemy = hitInfo.transform.gameObject;
-            if (hit && enemy.tag == "Enemy") {
-                GameObject ragdoll = enemy.transform.parent.FindChild("Ragdoll").gameObject;
-                Object.Destroy(enemy);
-                ragdoll.SetActive(true);
+            if (hitInfo.transform != null) {
+                GameObject target = hitInfo.transform.gameObject;
+                Health health = target.GetComponent<Health>();
+                if (health != null) {
+                    health.health -= gunDamage;
+                }
             }
         }
 	}

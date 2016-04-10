@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : DeathController
 {
     public float walkSpeed = 5f;
     public float runSpeed = 10f;
@@ -13,12 +14,14 @@ public class PlayerController : MonoBehaviour
 
     CharacterController characterController;
     Camera camera;
+    Health health;
 
 	// Use this for initialization
 	void Awake()
     {
         characterController = GetComponent<CharacterController>();
         camera = Camera.main;
+        health = GetComponent<Health>();
 	}
 
     void Update()
@@ -42,6 +45,9 @@ public class PlayerController : MonoBehaviour
             movementVector.y = jumpSpeed;
 
         characterController.Move(movementVector * Time.deltaTime);
+
+        if (transform.position.y < -20)
+            health.health--;
 	}
 
     void MouseLook()
@@ -115,5 +121,11 @@ public class PlayerController : MonoBehaviour
         if (movement.sqrMagnitude > 1)
             movement.Normalize();
         return movement * speed;
+    }
+
+
+    public override void OnDeath()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemyController : MonoBehaviour
+public class EnemyController : DeathController
 {
     Animator animator;
     GameObject player;
@@ -27,5 +27,13 @@ public class EnemyController : MonoBehaviour
     {
         animator.SetIKPosition(AvatarIKGoal.RightHand, player.transform.position);
         animator.SetIKPositionWeight(AvatarIKGoal.RightHand, 1);
+    }
+
+
+    public override void OnDeath()
+    {
+        GameObject ragdoll = transform.parent.FindChild("Ragdoll").gameObject;
+        Object.Destroy(this.gameObject);
+        ragdoll.SetActive(true);
     }
 }
