@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : DeathController
 {
     public float walkSpeed = 5f;
     public float runSpeed = 10f;
@@ -115,5 +116,10 @@ public class PlayerController : MonoBehaviour
         if (movement.sqrMagnitude > 1)
             movement.Normalize();
         return movement * speed;
+    }
+
+    public override void OnDeath()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
