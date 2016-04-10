@@ -45,9 +45,6 @@ public class PlayerController : DeathController
             movementVector.y = jumpSpeed;
 
         characterController.Move(movementVector * Time.deltaTime);
-
-        if (transform.position.y < -20)
-            health.health--;
 	}
 
     void MouseLook()

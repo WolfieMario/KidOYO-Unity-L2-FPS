@@ -519,6 +519,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 462100}
+  - 54: {fileID: 5491246}
   m_Layer: 0
   m_Name: Ethan 1
   m_TagString: Untagged
@@ -730,7 +731,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 491172}
   - 95: {fileID: 9596118}
-  - 54: {fileID: 5426650}
   - 136: {fileID: 13693164}
   - 114: {fileID: 11422242}
   - 114: {fileID: 11437290}
@@ -1919,6 +1919,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 488226}
+  - 114: {fileID: 11426078}
   m_Layer: 0
   m_Name: Bad Gun Item
   m_TagString: Untagged
@@ -3654,7 +3655,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 171826}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071067}
   m_LocalPosition: {x: 0.5295, y: 0.22424984, z: 0}
   m_LocalScale: {x: 0.075, y: 0.075, z: 0.075}
   m_Children: []
@@ -4130,7 +4131,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 121816}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.556, y: -13.139, z: -4.584}
+  m_LocalPosition: {x: -1.01, y: -13.139, z: -4.584}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 491172}
@@ -4284,7 +4285,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 173264}
-  m_LocalRotation: {x: 0.53267515, y: 0.07034045, z: 0.83613265, w: -0.11041513}
+  m_LocalRotation: {x: 0.5326752, y: 0.070340455, z: 0.83613276, w: -0.110415146}
   m_LocalPosition: {x: 0.000022271464, y: -0.00006150465, z: 0.026027026}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -4883,7 +4884,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 145928}
-  m_LocalRotation: {x: 0.5326752, y: 0.070340455, z: 0.83613276, w: -0.110415146}
+  m_LocalRotation: {x: 0.53267515, y: 0.07034045, z: 0.83613265, w: -0.11041513}
   m_LocalPosition: {x: 0.000022271464, y: -0.00006150465, z: 0.026027026}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -4937,21 +4938,6 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!54 &5426650
-Rigidbody:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 131546}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!54 &5438772
 Rigidbody:
@@ -5103,6 +5089,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!54 &5491246
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 121816}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 80
+  m_CollisionDetection: 0
 --- !u!54 &5496168
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -5204,6 +5205,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1f174e614142d0499b22e4b1c6aa93b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gun: {fileID: 11426078}
+  shootCooldown: 0
+--- !u!114 &11426078
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 172294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 318b631cf8f2da641bc3018eed7cca73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shootPoint: {fileID: 440948}
+  damage: 10
 --- !u!114 &11437290
 MonoBehaviour:
   m_ObjectHideFlags: 1

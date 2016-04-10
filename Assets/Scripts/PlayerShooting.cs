@@ -19,8 +19,8 @@ public class PlayerShooting : MonoBehaviour
         if (Input.GetMouseButtonUp(0)) {
             RaycastHit hitInfo = new RaycastHit();
             bool hit = Physics.Raycast(camera.transform.position, camera.transform.forward, out hitInfo);
-            if (hitInfo.transform != null) {
-                GameObject target = hitInfo.transform.gameObject;
+            if (hit) {
+                GameObject target = hitInfo.collider.transform.gameObject;
                 Health health = target.GetComponent<Health>();
                 if (health != null) {
                     health.health -= gunDamage;

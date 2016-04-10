@@ -16,6 +16,9 @@ public class Health : MonoBehaviour
 	
     void Update()
     {
+        if (transform.position.y < -20)
+            health--;
+
         if (health <= 0)
             deathController.OnDeath();
     }
