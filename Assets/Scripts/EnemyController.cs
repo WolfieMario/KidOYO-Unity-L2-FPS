@@ -4,25 +4,33 @@ using System.Collections;
 public class EnemyController : DeathController
 {
     public Gun gun;
+    public float shootDistance = 10;
 
     Animator animator;
+    NavMeshAgent agent;
+    Rigidbody rigidbody;
+
     GameObject player;
 
     void Awake()
     {
         animator = GetComponent<Animator>();
+        agent = GetComponent<NavMeshAgent>();
+        rigidbody = transform.parent.GetComponent<Rigidbody>();
         player = GameObject.FindGameObjectWithTag("Player");
+
+        agent.updatePosition = false;
     }
 	
     // Update is called once per frame
     void Update()
     {
-        Quaternion rotation = transform.parent.rotation;
+        /*Quaternion rotation = transform.parent.rotation;
         Vector3 direction = player.transform.position -
                             transform.parent.position;
         direction.y = 0;
         rotation.SetLookRotation(direction, Vector3.up);
-        transform.parent.rotation = rotation;
+        transform.parent.rotation = rotation;*/
 
         EnemyMovement();
 
@@ -42,10 +50,20 @@ public class EnemyController : DeathController
 
     void EnemyMovement()
     {
-        transform.parent.position += transform.parent.forward * Time.deltaTime;
+        /*transform.parent.position += transform.parent.forward * Time.deltaTime;
         Vector3 position = transform.parent.position;
         position.y += 0.1f;
         transform.parent.position = position;
+        */
+        if ((player.transform.position - rigidbody.position).sqrMagnitude >
+            shootDistance*shootDistance) {
+            agent.SetDestination(player.transform.position);
+        }
+        else {
+            agent.SetDestination(rigidbody.position);
+        }
+        rigidbody.velocity = agent.velocity;
+        agent.nextPosition = rigidbody.position;
     }
 
     void Shoot()
@@ -72,7 +90,7 @@ public class EnemyController : DeathController
 
     void OnDrawGizmos()
     {
-        Debug.DrawRay(gun.shootPoint.position, gun.shootPoint.forward);
+        Debug.DrawRay(gun.shootPoint.position, gun.shootPoint.forward * 20);
     }
 
     public override void OnDeath()
